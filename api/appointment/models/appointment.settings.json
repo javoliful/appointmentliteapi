@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "appointments",
+  "info": {
+    "name": "appointment"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "confirmed",
+        "canceled"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "onsite",
+        "virtual"
+      ]
+    },
+    "minBookers": {
+      "type": "integer"
+    },
+    "maxBookers": {
+      "type": "integer"
+    },
+    "waitingListSize": {
+      "type": "integer"
+    },
+    "cancelReason": {
+      "type": "text"
+    }
+  }
+}

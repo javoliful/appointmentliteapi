@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "providers",
+  "info": {
+    "name": "provider"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "enable": {
+      "type": "boolean"
+    },
+    "bookable": {
+      "type": "boolean"
+    },
+    "autoCorfirm": {
+      "type": "boolean"
+    }
+  }
+}

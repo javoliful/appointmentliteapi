@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookers",
+  "info": {
+    "name": "booker"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "enable": {
+      "type": "boolean"
+    },
+    "autoconfirm": {
+      "type": "boolean"
+    }
+  }
+}

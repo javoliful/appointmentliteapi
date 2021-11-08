@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "service_types",
+  "info": {
+    "name": "serviceType"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

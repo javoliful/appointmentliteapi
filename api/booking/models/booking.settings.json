@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookings",
+  "info": {
+    "name": "booking"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "unconfirmed",
+        "confirmed",
+        "booker_canceled",
+        "provider_canceled"
+      ]
+    },
+    "cancelReason": {
+      "type": "text"
+    }
+  }
+}

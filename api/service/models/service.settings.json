@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "name": "service"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "schedule": {
+      "type": "json"
+    },
+    "exception": {
+      "type": "json"
+    },
+    "minBookers": {
+      "type": "integer"
+    },
+    "maxBookers": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}
