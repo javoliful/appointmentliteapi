@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "services",
   "info": {
-    "name": "service"
+    "name": "service",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -25,6 +26,12 @@
     },
     "description": {
       "type": "string"
+    },
+    "provider": {
+      "model": "provider"
+    },
+    "service_type": {
+      "model": "service-type"
     }
   }
 }
