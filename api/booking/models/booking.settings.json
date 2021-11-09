@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "bookings",
   "info": {
-    "name": "booking"
+    "name": "booking",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -22,6 +23,13 @@
     },
     "cancelReason": {
       "type": "text"
+    },
+    "booker": {
+      "model": "booker"
+    },
+    "timeSlot": {
+      "via": "bookings",
+      "model": "time-slot"
     }
   }
 }

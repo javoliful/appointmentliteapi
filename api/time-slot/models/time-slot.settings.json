@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "time_slots",
   "info": {
-    "name": "timeSlot"
+    "name": "timeSlot",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -26,6 +27,14 @@
         "confirmed",
         "canceled"
       ]
+    },
+    "appointment": {
+      "via": "timeSlots",
+      "model": "appointment"
+    },
+    "bookings": {
+      "collection": "booking",
+      "via": "timeSlot"
     }
   }
 }
