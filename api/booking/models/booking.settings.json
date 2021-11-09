@@ -24,11 +24,12 @@
     "cancelReason": {
       "type": "text"
     },
-    "timeSlot": {
-      "model": "time-slot"
-    },
     "booker": {
       "model": "booker"
+    },
+    "timeSlot": {
+      "via": "bookings",
+      "model": "time-slot"
     }
   }
 }

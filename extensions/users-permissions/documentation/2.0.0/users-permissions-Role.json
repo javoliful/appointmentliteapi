@@ -1,19 +1,82 @@
 {
   "paths": {
-    "/time-slots": {
+    "/users-permissions/roles/{id}": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Retrieve a role depending on its id",
         "responses": {
           "200": {
             "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
+                  "$ref": "#/components/schemas/UsersPermissionsRole"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "UsersPermissions - Role"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/users-permissions/roles": {
+      "get": {
+        "deprecated": false,
+        "description": "Retrieve all role documents",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsersPermissionsRole"
                   }
                 }
               }
@@ -52,7 +115,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "UsersPermissions - Role"
         ],
         "parameters": [
           {
@@ -195,18 +258,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new record",
+        "description": "Create a new role",
         "responses": {
           "200": {
             "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/UsersPermissionsRole"
                 }
               }
             }
@@ -244,7 +303,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "UsersPermissions - Role"
         ],
         "requestBody": {
           "description": "",
@@ -252,28 +311,24 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewUsersPermissionsRole"
               }
             }
           }
         }
       }
     },
-    "/time-slots/count": {
-      "get": {
+    "/users-permissions/roles/{role}": {
+      "put": {
         "deprecated": false,
-        "description": "",
+        "description": "Update a role",
         "responses": {
           "200": {
             "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/UsersPermissionsRole"
                 }
               }
             }
@@ -311,68 +366,11 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
-        ],
-        "parameters": []
-      }
-    },
-    "/time-slots/{id}": {
-      "get": {
-        "deprecated": false,
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Time-slot"
+          "UsersPermissions - Role"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "role",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -381,60 +379,6 @@
               "type": "string"
             }
           }
-        ]
-      },
-      "put": {
-        "deprecated": false,
-        "description": "Update a record",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Time-slot"
         ],
         "requestBody": {
           "description": "",
@@ -442,35 +386,26 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewUsersPermissionsRole"
               }
             }
           }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "deprecated": false,
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
+        }
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a record",
+        "description": "Delete a role",
         "responses": {
           "200": {
-            "description": "deletes a single record based on the ID supplied",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "integer",
-                  "format": "int64"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -508,11 +443,11 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "UsersPermissions - Role"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "role",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -527,116 +462,55 @@
   },
   "components": {
     "schemas": {
-      "Time-slot": {
+      "UsersPermissionsRole": {
         "required": [
-          "id"
+          "id",
+          "name"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "startDateTime": {
+          "name": {
             "type": "string",
-            "format": "date-time"
+            "minLength": 3
           },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
+          "description": {
+            "type": "string"
           },
-          "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "proposed",
-              "merged",
-              "confirmed",
-              "canceled"
-            ]
+          "type": {
+            "type": "string"
           },
-          "appointment": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "status": {
-                "type": "string",
-                "enum": [
-                  "pending",
-                  "confirmed",
-                  "canceled"
-                ]
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "onsite",
-                  "virtual"
-                ]
-              },
-              "minBookers": {
-                "type": "integer"
-              },
-              "maxBookers": {
-                "type": "integer"
-              },
-              "waitingListSize": {
-                "type": "integer"
-              },
-              "cancelReason": {
-                "type": "string"
-              },
-              "service": {
-                "type": "string"
-              },
-              "timeSlots": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "bookings": {
+          "permissions": {
             "type": "array",
             "items": {
               "required": [
-                "id"
+                "id",
+                "type",
+                "controller",
+                "action",
+                "enabled"
               ],
               "properties": {
                 "id": {
                   "type": "string"
                 },
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "unconfirmed",
-                    "confirmed",
-                    "booker_canceled",
-                    "provider_canceled"
-                  ]
-                },
-                "cancelReason": {
+                "type": {
                   "type": "string"
                 },
-                "booker": {
+                "controller": {
                   "type": "string"
                 },
-                "timeSlot": {
+                "action": {
                   "type": "string"
                 },
-                "published_at": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "policy": {
+                  "type": "string"
+                },
+                "role": {
                   "type": "string"
                 },
                 "created_by": {
@@ -648,44 +522,82 @@
               }
             }
           },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
+          "users": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "username",
+                "email"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                },
+                "confirmationToken": {
+                  "type": "string"
+                },
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
-      "NewTime-slot": {
+      "NewUsersPermissionsRole": {
+        "required": [
+          "name"
+        ],
         "properties": {
-          "startDateTime": {
+          "name": {
             "type": "string",
-            "format": "date-time"
+            "minLength": 3
           },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "proposed",
-              "merged",
-              "confirmed",
-              "canceled"
-            ]
-          },
-          "appointment": {
+          "description": {
             "type": "string"
           },
-          "bookings": {
+          "type": {
+            "type": "string"
+          },
+          "permissions": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"
@@ -697,5 +609,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    {
+      "name": "UsersPermissions - Role"
+    }
+  ]
 }

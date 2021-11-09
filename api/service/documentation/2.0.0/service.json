@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/time-slots": {
+    "/services": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -10,10 +10,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Service"
                   }
                 }
               }
@@ -52,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service"
         ],
         "parameters": [
           {
@@ -202,11 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Service"
                 }
               }
             }
@@ -244,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service"
         ],
         "requestBody": {
           "description": "",
@@ -252,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewService"
               }
             }
           }
         }
       }
     },
-    "/time-slots/count": {
+    "/services/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -270,8 +265,8 @@
               "application/json": {
                 "schema": {
                   "properties": {
-                    "foo": {
-                      "type": "string"
+                    "count": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -311,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service"
         ],
         "parameters": []
       }
     },
-    "/time-slots/{id}": {
+    "/services/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -326,11 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Service"
                 }
               }
             }
@@ -368,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service"
         ],
         "parameters": [
           {
@@ -392,11 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Service"
                 }
               }
             }
@@ -434,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service"
         ],
         "requestBody": {
           "description": "",
@@ -442,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewService"
               }
             }
           }
@@ -508,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service"
         ],
         "parameters": [
           {
@@ -527,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Time-slot": {
+      "Service": {
         "required": [
           "id"
         ],
@@ -535,25 +522,22 @@
           "id": {
             "type": "string"
           },
-          "startDateTime": {
-            "type": "string",
-            "format": "date-time"
+          "schedule": {
+            "type": "object"
           },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
+          "exception": {
+            "type": "object"
           },
-          "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "proposed",
-              "merged",
-              "confirmed",
-              "canceled"
-            ]
+          "minBookers": {
+            "type": "integer"
           },
-          "appointment": {
+          "maxBookers": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "provider": {
             "required": [
               "id"
             ],
@@ -561,41 +545,17 @@
               "id": {
                 "type": "string"
               },
-              "status": {
-                "type": "string",
-                "enum": [
-                  "pending",
-                  "confirmed",
-                  "canceled"
-                ]
+              "enable": {
+                "type": "boolean"
               },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "onsite",
-                  "virtual"
-                ]
+              "bookable": {
+                "type": "boolean"
               },
-              "minBookers": {
-                "type": "integer"
+              "autoCorfirm": {
+                "type": "boolean"
               },
-              "maxBookers": {
-                "type": "integer"
-              },
-              "waitingListSize": {
-                "type": "integer"
-              },
-              "cancelReason": {
+              "booker": {
                 "type": "string"
-              },
-              "service": {
-                "type": "string"
-              },
-              "timeSlots": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
               },
               "published_at": {
                 "type": "string"
@@ -608,43 +568,25 @@
               }
             }
           },
-          "bookings": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "unconfirmed",
-                    "confirmed",
-                    "booker_canceled",
-                    "provider_canceled"
-                  ]
-                },
-                "cancelReason": {
-                  "type": "string"
-                },
-                "booker": {
-                  "type": "string"
-                },
-                "timeSlot": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
+          "service_type": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           },
@@ -654,34 +596,28 @@
           }
         }
       },
-      "NewTime-slot": {
+      "NewService": {
         "properties": {
-          "startDateTime": {
-            "type": "string",
-            "format": "date-time"
+          "schedule": {
+            "type": "object"
           },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
+          "exception": {
+            "type": "object"
           },
-          "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "proposed",
-              "merged",
-              "confirmed",
-              "canceled"
-            ]
+          "minBookers": {
+            "type": "integer"
           },
-          "appointment": {
+          "maxBookers": {
+            "type": "integer"
+          },
+          "description": {
             "type": "string"
           },
-          "bookings": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "provider": {
+            "type": "string"
+          },
+          "service_type": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -697,5 +633,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    {
+      "name": "Service"
+    }
+  ]
 }

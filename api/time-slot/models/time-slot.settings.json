@@ -29,7 +29,12 @@
       ]
     },
     "appointment": {
+      "via": "timeSlots",
       "model": "appointment"
+    },
+    "bookings": {
+      "collection": "booking",
+      "via": "timeSlot"
     }
   }
 }

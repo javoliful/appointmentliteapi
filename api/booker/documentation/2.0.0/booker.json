@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/time-slots": {
+    "/bookers": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -10,10 +10,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Booker"
                   }
                 }
               }
@@ -52,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Booker"
         ],
         "parameters": [
           {
@@ -202,11 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Booker"
                 }
               }
             }
@@ -244,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Booker"
         ],
         "requestBody": {
           "description": "",
@@ -252,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewBooker"
               }
             }
           }
         }
       }
     },
-    "/time-slots/count": {
+    "/bookers/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -270,8 +265,8 @@
               "application/json": {
                 "schema": {
                   "properties": {
-                    "foo": {
-                      "type": "string"
+                    "count": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -311,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Booker"
         ],
         "parameters": []
       }
     },
-    "/time-slots/{id}": {
+    "/bookers/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -326,11 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Booker"
                 }
               }
             }
@@ -368,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Booker"
         ],
         "parameters": [
           {
@@ -392,11 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Booker"
                 }
               }
             }
@@ -434,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Booker"
         ],
         "requestBody": {
           "description": "",
@@ -442,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewBooker"
               }
             }
           }
@@ -508,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Booker"
         ],
         "parameters": [
           {
@@ -527,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Time-slot": {
+      "Booker": {
         "required": [
           "id"
         ],
@@ -535,69 +522,47 @@
           "id": {
             "type": "string"
           },
-          "startDateTime": {
-            "type": "string",
-            "format": "date-time"
+          "enable": {
+            "type": "boolean"
           },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
+          "autoconfirm": {
+            "type": "boolean"
           },
-          "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "proposed",
-              "merged",
-              "confirmed",
-              "canceled"
-            ]
-          },
-          "appointment": {
+          "user": {
             "required": [
-              "id"
+              "id",
+              "username",
+              "email"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "status": {
-                "type": "string",
-                "enum": [
-                  "pending",
-                  "confirmed",
-                  "canceled"
-                ]
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "onsite",
-                  "virtual"
-                ]
-              },
-              "minBookers": {
-                "type": "integer"
-              },
-              "maxBookers": {
-                "type": "integer"
-              },
-              "waitingListSize": {
-                "type": "integer"
-              },
-              "cancelReason": {
+              "username": {
                 "type": "string"
               },
-              "service": {
+              "email": {
                 "type": "string"
               },
-              "timeSlots": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+              "provider": {
+                "type": "string"
               },
-              "published_at": {
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
                 "type": "string"
               },
               "created_by": {
@@ -608,80 +573,22 @@
               }
             }
           },
-          "bookings": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "unconfirmed",
-                    "confirmed",
-                    "booker_canceled",
-                    "provider_canceled"
-                  ]
-                },
-                "cancelReason": {
-                  "type": "string"
-                },
-                "booker": {
-                  "type": "string"
-                },
-                "timeSlot": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
           }
         }
       },
-      "NewTime-slot": {
+      "NewBooker": {
         "properties": {
-          "startDateTime": {
-            "type": "string",
-            "format": "date-time"
+          "enable": {
+            "type": "boolean"
           },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
+          "autoconfirm": {
+            "type": "boolean"
           },
-          "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "proposed",
-              "merged",
-              "confirmed",
-              "canceled"
-            ]
-          },
-          "appointment": {
+          "user": {
             "type": "string"
-          },
-          "bookings": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "published_at": {
             "type": "string",
@@ -697,5 +604,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    {
+      "name": "Booker"
+    }
+  ]
 }

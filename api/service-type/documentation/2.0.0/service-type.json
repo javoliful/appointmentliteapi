@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/time-slots": {
+    "/service-types": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -52,7 +52,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service-type"
         ],
         "parameters": [
           {
@@ -244,7 +244,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service-type"
         ],
         "requestBody": {
           "description": "",
@@ -252,14 +252,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewService-type"
               }
             }
           }
         }
       }
     },
-    "/time-slots/count": {
+    "/service-types/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -311,12 +311,12 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service-type"
         ],
         "parameters": []
       }
     },
-    "/time-slots/{id}": {
+    "/service-types/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -368,7 +368,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service-type"
         ],
         "parameters": [
           {
@@ -434,7 +434,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service-type"
         ],
         "requestBody": {
           "description": "",
@@ -442,7 +442,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewService-type"
               }
             }
           }
@@ -508,7 +508,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Service-type"
         ],
         "parameters": [
           {
@@ -527,7 +527,7 @@
   },
   "components": {
     "schemas": {
-      "Time-slot": {
+      "Service-type": {
         "required": [
           "id"
         ],
@@ -535,118 +535,8 @@
           "id": {
             "type": "string"
           },
-          "startDateTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "proposed",
-              "merged",
-              "confirmed",
-              "canceled"
-            ]
-          },
-          "appointment": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "status": {
-                "type": "string",
-                "enum": [
-                  "pending",
-                  "confirmed",
-                  "canceled"
-                ]
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "onsite",
-                  "virtual"
-                ]
-              },
-              "minBookers": {
-                "type": "integer"
-              },
-              "maxBookers": {
-                "type": "integer"
-              },
-              "waitingListSize": {
-                "type": "integer"
-              },
-              "cancelReason": {
-                "type": "string"
-              },
-              "service": {
-                "type": "string"
-              },
-              "timeSlots": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "bookings": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "unconfirmed",
-                    "confirmed",
-                    "booker_canceled",
-                    "provider_canceled"
-                  ]
-                },
-                "cancelReason": {
-                  "type": "string"
-                },
-                "booker": {
-                  "type": "string"
-                },
-                "timeSlot": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
+          "name": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -654,34 +544,10 @@
           }
         }
       },
-      "NewTime-slot": {
+      "NewService-type": {
         "properties": {
-          "startDateTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "proposed",
-              "merged",
-              "confirmed",
-              "canceled"
-            ]
-          },
-          "appointment": {
+          "name": {
             "type": "string"
-          },
-          "bookings": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "published_at": {
             "type": "string",
