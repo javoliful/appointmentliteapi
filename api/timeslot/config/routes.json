@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/time-slots",
-      "handler": "time-slot.find",
+      "path": "/timeslots",
+      "handler": "timeslot.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/time-slots/count",
-      "handler": "time-slot.count",
+      "path": "/timeslots/count",
+      "handler": "timeslot.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/time-slots/:id",
-      "handler": "time-slot.findOne",
+      "path": "/timeslots/:id",
+      "handler": "timeslot.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/time-slots",
-      "handler": "time-slot.create",
+      "path": "/timeslots",
+      "handler": "timeslot.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/time-slots/:id",
-      "handler": "time-slot.update",
+      "path": "/timeslots/:id",
+      "handler": "timeslot.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/time-slots/:id",
-      "handler": "time-slot.delete",
+      "path": "/timeslots/:id",
+      "handler": "timeslot.delete",
       "config": {
         "policies": []
       }

@@ -27,9 +27,9 @@
     "booker": {
       "model": "booker"
     },
-    "timeSlot": {
-      "via": "bookings",
-      "model": "time-slot"
+    "timeslot": {
+      "model": "timeslot",
+      "via": "bookings"
     }
   }
 }

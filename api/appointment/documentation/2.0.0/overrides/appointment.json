@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/time-slots": {
+    "/appointments": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -10,10 +10,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Appointment"
                   }
                 }
               }
@@ -52,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Appointment"
         ],
         "parameters": [
           {
@@ -202,11 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Appointment"
                 }
               }
             }
@@ -244,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Appointment"
         ],
         "requestBody": {
           "description": "",
@@ -252,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewAppointment"
               }
             }
           }
         }
       }
     },
-    "/time-slots/count": {
+    "/appointments/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -270,8 +265,8 @@
               "application/json": {
                 "schema": {
                   "properties": {
-                    "foo": {
-                      "type": "string"
+                    "count": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -311,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Appointment"
         ],
         "parameters": []
       }
     },
-    "/time-slots/{id}": {
+    "/appointments/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -326,11 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Appointment"
                 }
               }
             }
@@ -368,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Appointment"
         ],
         "parameters": [
           {
@@ -392,11 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Appointment"
                 }
               }
             }
@@ -434,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Appointment"
         ],
         "requestBody": {
           "description": "",
@@ -442,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewTime-slot"
+                "$ref": "#/components/schemas/NewAppointment"
               }
             }
           }
@@ -508,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Time-slot"
+          "Appointment"
         ],
         "parameters": [
           {
@@ -527,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Time-slot": {
+      "Appointment": {
         "required": [
           "id"
         ],
@@ -535,25 +522,34 @@
           "id": {
             "type": "string"
           },
-          "startDateTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
-          },
           "status": {
             "type": "string",
             "enum": [
               "pending",
-              "proposed",
-              "merged",
               "confirmed",
               "canceled"
             ]
           },
-          "appointment": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "onsite",
+              "virtual"
+            ]
+          },
+          "minBookers": {
+            "type": "integer"
+          },
+          "maxBookers": {
+            "type": "integer"
+          },
+          "waitingListSize": {
+            "type": "integer"
+          },
+          "cancelReason": {
+            "type": "string"
+          },
+          "service": {
             "required": [
               "id"
             ],
@@ -561,20 +557,11 @@
               "id": {
                 "type": "string"
               },
-              "status": {
-                "type": "string",
-                "enum": [
-                  "pending",
-                  "confirmed",
-                  "canceled"
-                ]
+              "schedule": {
+                "type": "object"
               },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "onsite",
-                  "virtual"
-                ]
+              "exception": {
+                "type": "object"
               },
               "minBookers": {
                 "type": "integer"
@@ -582,20 +569,105 @@
               "maxBookers": {
                 "type": "integer"
               },
-              "waitingListSize": {
-                "type": "integer"
-              },
-              "cancelReason": {
+              "description": {
                 "type": "string"
               },
-              "service": {
-                "type": "string"
-              },
-              "timeSlots": {
-                "type": "array",
-                "items": {
-                  "type": "string"
+              "provider": {
+                
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "enable": {
+                    "type": "boolean"
+                  },
+                  "bookable": {
+                    "type": "boolean"
+                  },
+                  "autoCorfirm": {
+                    "type": "boolean"
+                  },
+                  "booker": {
+                    "required": [
+                      "id"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "enable": {
+                        "type": "boolean"
+                      },
+                      "autoconfirm": {
+                        "type": "boolean"
+                      },
+                      "user": {
+                        "required": [
+                          "id",
+                          "username",
+                          "email"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "username": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "type": "string"
+                          },
+                          "provider": {
+                            "type": "string"
+                          },
+                          "password": {
+                            "type": "string"
+                          },
+                          "resetPasswordToken": {
+                            "type": "string"
+                          },
+                          "confirmationToken": {
+                            "type": "string"
+                          },
+                          "confirmed": {
+                            "type": "boolean"
+                          },
+                          "blocked": {
+                            "type": "boolean"
+                          },
+                          "role": {
+                            "type": "string"
+                          },
+                          "created_by": {
+                            "type": "string"
+                          },
+                          "updated_by": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "published_at": {
+                        "type": "string"
+                      },
+                      "created_by": {
+                        "type": "string"
+                      },
+                      "updated_by": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "published_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
                 }
+              },
+              "servicetype": {
+                "type": "string"
               },
               "published_at": {
                 "type": "string"
@@ -608,7 +680,7 @@
               }
             }
           },
-          "bookings": {
+          "timeslots": {
             "type": "array",
             "items": {
               "required": [
@@ -618,23 +690,30 @@
                 "id": {
                   "type": "string"
                 },
+                "startDateTime": {
+                  "type": "string"
+                },
+                "endDateTime": {
+                  "type": "string"
+                },
                 "status": {
                   "type": "string",
                   "enum": [
-                    "unconfirmed",
+                    "pending",
+                    "proposed",
+                    "merged",
                     "confirmed",
-                    "booker_canceled",
-                    "provider_canceled"
+                    "canceled"
                   ]
                 },
-                "cancelReason": {
+                "appointment": {
                   "type": "string"
                 },
-                "booker": {
-                  "type": "string"
-                },
-                "timeSlot": {
-                  "type": "string"
+                "bookings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "published_at": {
                   "type": "string"
@@ -654,30 +733,39 @@
           }
         }
       },
-      "NewTime-slot": {
+      "NewAppointment": {
         "properties": {
-          "startDateTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDatetime": {
-            "type": "string",
-            "format": "date-time"
-          },
           "status": {
             "type": "string",
             "enum": [
               "pending",
-              "proposed",
-              "merged",
               "confirmed",
               "canceled"
             ]
           },
-          "appointment": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "onsite",
+              "virtual"
+            ]
+          },
+          "minBookers": {
+            "type": "integer"
+          },
+          "maxBookers": {
+            "type": "integer"
+          },
+          "waitingListSize": {
+            "type": "integer"
+          },
+          "cancelReason": {
             "type": "string"
           },
-          "bookings": {
+          "service": {
+            "type": "string"
+          },
+          "timeslots": {
             "type": "array",
             "items": {
               "type": "string"
@@ -697,5 +785,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    {
+      "name": "Appointment"
+    }
+  ]
 }

@@ -5,4 +5,10 @@
  * to customize this service
  */
 
-module.exports = {};
+ module.exports = {
+  
+    findOne(params, populate) {
+      return strapi.query('appointment').find(params, ["service", "service.provider.booker.user"]);      
+    },
+  };
+  

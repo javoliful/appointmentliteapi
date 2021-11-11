@@ -562,7 +562,7 @@
               }
             }
           },
-          "timeSlot": {
+          "timeslot": {
             "required": [
               "id"
             ],
@@ -573,7 +573,7 @@
               "startDateTime": {
                 "type": "string"
               },
-              "endDatetime": {
+              "endDateTime": {
                 "type": "string"
               },
               "status": {
@@ -629,7 +629,7 @@
           "booker": {
             "type": "string"
           },
-          "timeSlot": {
+          "timeslot": {
             "type": "string"
           },
           "published_at": {

@@ -30,8 +30,8 @@
     "provider": {
       "model": "provider"
     },
-    "service_type": {
-      "model": "service-type"
+    "servicetype": {
+      "model": "servicetype"
     }
   }
 }

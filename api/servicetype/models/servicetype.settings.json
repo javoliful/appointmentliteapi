@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "service_types",
+  "collectionName": "servicetypes",
   "info": {
-    "name": "serviceType"
+    "name": "servicetype"
   },
   "options": {
     "increments": true,

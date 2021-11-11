@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/service-types",
-      "handler": "service-type.find",
+      "path": "/servicetypes",
+      "handler": "servicetype.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/service-types/count",
-      "handler": "service-type.count",
+      "path": "/servicetypes/count",
+      "handler": "servicetype.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/service-types/:id",
-      "handler": "service-type.findOne",
+      "path": "/servicetypes/:id",
+      "handler": "servicetype.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/service-types",
-      "handler": "service-type.create",
+      "path": "/servicetypes",
+      "handler": "servicetype.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/service-types/:id",
-      "handler": "service-type.update",
+      "path": "/servicetypes/:id",
+      "handler": "servicetype.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/service-types/:id",
-      "handler": "service-type.delete",
+      "path": "/servicetypes/:id",
+      "handler": "servicetype.delete",
       "config": {
         "policies": []
       }

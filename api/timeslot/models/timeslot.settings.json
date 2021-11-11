@@ -1,9 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "time_slots",
+  "collectionName": "timeslots",
   "info": {
-    "name": "timeSlot",
-    "description": ""
+    "name": "timeslot"
   },
   "options": {
     "increments": true,
@@ -15,7 +14,7 @@
     "startDateTime": {
       "type": "datetime"
     },
-    "endDatetime": {
+    "endDateTime": {
       "type": "datetime"
     },
     "status": {
@@ -29,12 +28,12 @@
       ]
     },
     "appointment": {
-      "via": "timeSlots",
+      "via": "timeslots",
       "model": "appointment"
     },
     "bookings": {
-      "collection": "booking",
-      "via": "timeSlot"
+      "via": "timeslot",
+      "collection": "booking"
     }
   }
 }

@@ -42,9 +42,9 @@
     "service": {
       "model": "service"
     },
-    "timeSlots": {
-      "via": "appointment",
-      "collection": "time-slot"
+    "timeslots": {
+      "collection": "timeslot",
+      "via": "appointment"
     }
   }
 }

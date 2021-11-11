@@ -575,7 +575,7 @@
               "provider": {
                 "type": "string"
               },
-              "service_type": {
+              "servicetype": {
                 "type": "string"
               },
               "published_at": {
@@ -589,7 +589,7 @@
               }
             }
           },
-          "timeSlots": {
+          "timeslots": {
             "type": "array",
             "items": {
               "required": [
@@ -602,7 +602,7 @@
                 "startDateTime": {
                   "type": "string"
                 },
-                "endDatetime": {
+                "endDateTime": {
                   "type": "string"
                 },
                 "status": {
@@ -674,7 +674,7 @@
           "service": {
             "type": "string"
           },
-          "timeSlots": {
+          "timeslots": {
             "type": "array",
             "items": {
               "type": "string"

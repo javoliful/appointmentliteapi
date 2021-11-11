@@ -568,7 +568,7 @@
               }
             }
           },
-          "service_type": {
+          "servicetype": {
             "required": [
               "id"
             ],
@@ -616,7 +616,7 @@
           "provider": {
             "type": "string"
           },
-          "service_type": {
+          "servicetype": {
             "type": "string"
           },
           "published_at": {
